@@ -1,0 +1,7 @@
+<div style="text-align:center;padding-top:30px;">
+<div class="page-header">
+  <h1 ng-bind="data[num].title"></h1><p ng-bind="data[num].date"></p>
+</div>
+</div>
+<div ng-bind-html="trustHtml(data[num].content)"></div>
+

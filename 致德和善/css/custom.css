@@ -1,0 +1,8 @@
+@charset "utf-8";
+/* CSS Document */
+
+    .custom_rule{padding-top:6px;width:630px; float:left;}
+	.custom_til1{height:52px;font:16px/52px "宋体";color:#555555;border-bottom:2px solid #dddddd;margin-bottom:17px;}
+	.custom_rule li{float:left;padding:8px 20px 0 20px;} 
+ 
+	 

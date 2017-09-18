@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* CSS Document */
+	.header{width:1000px;margin:0 auto;margin-bottom:16px;}
+	.header_left{float:left;font:18px/30px "Micosoft YaHei";}
+	.header_left img{vertical-align:middle;margin-right:16px;}
+	.time_right{float:right;font:12px/23px "宋体";padding-top:10px;text-align:right;color:#888888;}
+	.time_right span{margin:0 12px;color:#666666;}
+	
+	.van{background:#005db0;height:46px;margin:0 auto;}
+	.van ul{border-left:1px solid #1c6db5;width:1000px;height:46px; margin:0 auto;}
+	.van li{float:left;border-right:1px solid #1c6db5;font:16px/46px "宋体";}
+	.van li a{color:#ffffff;display:block;padding:0 25px;}
+	.van li a:hover{background:#00498b;}
+	
+	.bg{position:relative;height:395px;width:1440px;margin:0 auto;background:url(../image/bg1.jpg) no-repeat left center;}
+	.idot{position:absolute;left:50%;top:371px;width:40px;height:10px;margin-left:-15px;}
+	.idot span{margin:0 5px;display:inline-block;background:url(../image/dn2.png) no-repeat ;width:10px;height:10px;}
+	.idot span.on{background:url(../image/dn1.png) no-repeat;}
+	
+	.dt{width:1000px; margin:0 auto;}
+	.rule{float:left;}
+	.til1{font:16px/45px "宋体";background:url(../image/title1.jpg) no-repeat left center;border-bottom:1px solid #dddddd;padding-left:32px;margin:18px 0 0;}
+	.til2{font:16px/45px "宋体";background:url(../image/title2.jpg) no-repeat left center;border-bottom:1px solid #dddddd;padding-left:32px;margin:18px 0 0;}
+	.rule ol{float:left;background:url(../image/order.jpg) no-repeat left 15px;width:630px;padding-left:26px;padding-top:6px;}
+	.rule li{height:34px;line-heught:34px;}
+	.rule li a{float:left;font:12px/34px "微软雅黑";line-height:34px;color:#666;}
+	.rule li span{float:right;font:12px/34px "宋体";color:#666;}
+	
+	.phone{float:left;margin:0 auto;border-left:1px dotted #ddd;padding-left:20px;margin-left:20px;}
+	.rel{font:12px/36px "宋体";color:#666;background:url(../image/bg.jpg);}
+	.rel span{font:bold 15px/36px "宋体";color:#666;}
+	
+	
+	.end{height:61px;font:12px/61px "宋体";color:#666;background:#efefef;text-align:center;}
+	.end img{vertical-align:middle;;margin:8px 0;}
+	

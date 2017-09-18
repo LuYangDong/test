@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+  <script src="js/angular.min.js" type="text/javascript"></script>
+  <style type="text/css">
+  	.container{width:1000px; margin:0 auto;}
+    table{border-spacing:0;border-collapse:collapse}
+    table tr th {text-align: left; padding-bottom: 20px;}
+    table tr td {border-top: 1px solid #ddd; padding: 10px 0;}
+    .pagination-nav {
+      text-align: right;
+    }
+    .pagination-nav .page-nav {
+      border: 1px solid #eeeeee;
+      border-radius: 10px;
+      margin-left: 6px;
+    }
+    .pagination-nav .page-nav .pre-page {
+      width: 0; height: 0;
+      display: inline-block;
+      cursor: pointer;
+      margin-left: 15px;
+      margin-right: 13px;
+      border-right: 12px solid #686868;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+    }
+    .pagination-nav .page-nav .nav-separator {
+      border-right: 1px solid #eeeeee;
+    }
+    .pagination-nav .page-nav .next-page {
+      width: 0; height: 0;
+      display: inline-block;
+      cursor: pointer;
+      margin-left: 20px;
+      margin-right: 12px;
+      border-left: 12px solid #686868;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+    }
+    .pagination-nav .page-nav .disabled {
+      cursor: inherit;
+      border-left-color: #e6e6e6;
+      border-right-color: #e6e6e6;
+    }
+    .active{background:#38A884;}
+  </style>
+</head>
+
+<body ng-app="myApp">
+<div class="container" ng-controller="myCnt">
+    <h1 class="course-title">limitTo分页效果</h1>
+
+    <table width="100%">
+      <tr>
+        <th>姓名</th>
+        <th width="50%">就业企业</th>
+      </tr>
+   
+     	<tr ng-repeat="per in list | paging:currentPage*listsPerPage | limitTo:listsPerPage">
+    
+        <td>{{per.name}}</td>
+        <td>{{per.job}}</td>
+      </tr>
+     
+     
+      <tr height="66">
+        <td align="right">
+          <button ng-click="setPage(0)" ng-class="{'active':currentPage==0}" >首页</button>
+          <button ng-click="prevPage()">上一页</button>
+          <button ng-class="{'active':num==currentPage}" 
+          	ng-repeat="num in pageNum" 
+          	ng-click="setPage(num)"
+          	style="padding:4px 8px;margin:0 2px;">{{num+1}}</button> 
+          <button ng-click="nextPage()">下一页</button>
+          <button ng-click="setPage(pages-1)" ng-class="{'active':currentPage==pages-1}" >尾页</button>
+        </td>
+        <td>
+          <div class="pagination-nav">
+            <span>{{currentPage+1}}</span>
+            <span class="page-separator">/</span>
+            <span>{{pages}}</span>
+            <span class="page-nav">
+              <span class="pre-page"  ng-click="prevPage()"
+              	ng-class="{'disabled':currentPage==0}"></span>
+        
+              <span class="nav-separator"></span>
+              <span class="next-page" ng-click="nextPage()"
+              	ng-class="{'disabled':currentPage==pages-1}"></span>
+             
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">提示：分页不仅支持以上两组控件，还支持键盘左右键(← →)分页+数字(0~9)分页。</td>
+      </tr>
+    </table>
+</div>
+<script>
+	var app=angular.module("myApp",[]);
+	
+	 app.filter('paging',function(){      //paging 过滤器
+    return function(lists,start){     //两个参数 lists 是在 html 里你ng-repeat的原始数据：
+                                      //  start 也就是 paging 后面传的参数，即 currentPage*listsPerPage
+      return lists.slice(start);     //将原始数据按照 start 分割
+    };
+  });
+	app.controller("myCnt",function($scope){
+		$scope.list = [
+	  	{'name':"李*波","job":"中**育"},
+		{'name':"邓*飞","job":"北京**世纪"},
+		{'name':"雷*升","job":"北京**达科技发展有限公司"},
+		{'name':"李*波","job":"中**育"},
+		{'name':"邓*飞","job":"北京**世纪"},
+		{'name':"雷*升","job":"北京**达科技发展有限公司"},
+		{'name':"李*波","job":"中**育"},
+		{'name':"邓*飞","job":"北京**世纪"},
+		{'name':"雷*升","job":"北京**达科技发展有限公司"},
+		{'name':"李*波","job":"中**育"},
+		{'name':"邓*飞","job":"北京**世纪"},
+		{'name':"雷*升","job":"北京**达科技发展有限公司"},
+		{'name':"李*波","job":"中**育"},
+		{'name':"邓*飞","job":"北京**世纪"},
+		{'name':"雷*升","job":"北京**达科技发展有限公司"},
+		{'name':"李*波","job":"中**育"},
+		{'name':"邓*飞","job":"北京**世纪"},
+		{'name':"雷*升","job":"北京**达科技发展有限公司"},
+		{'name':"李*波","job":"中**育"},
+		{'name':"邓*飞","job":"北京**世纪"},
+		{'name':"雷*升","job":"北京**达科技发展有限公司"},
+		{'name':"李*波","job":"中**育"},
+		{'name':"邓*飞","job":"北京**世纪"},
+		{'name':"雷*升","job":"北京**达科技发展有限公司"},
+		{'name':"李*波","job":"中**育"},
+		{'name':"邓*飞","job":"北京**世纪"},
+		{'name':"雷*升","job":"北京**达科技发展有限公司"}
+	  ];
+      $scope.dataNum =  $scope.list.length;  //获得数据总个数
+     $scope.pages = Math.ceil($scope.dataNum/8);         //按照每页显示8个数据，得到总页数
+    $scope.pageNum = [];                                //生成页码，在 html里 ng-repeat 出来
+     for(var i=0;i<$scope.pages;i++){
+       $scope.pageNum.push(i);
+     } 
+     $scope.currentPage = 0;                       //设置当前页是 033                          
+     $scope.listsPerPage = 8; 						//设置每页显示 8 个
+     $scope.setPage = function(num){             // 当点击页码数字时执行的函数
+      $scope.currentPage = num;                 //将当前页 设置为 页码数
+     }
+ 
+    $scope.prevPage = function(){               //点击上一页执行的函数
+          if($scope.currentPage > 0){
+               $scope.currentPage--;
+          }
+      }
+      $scope.nextPage = function(){              //点击下一页执行的函数
+           if ($scope.currentPage < $scope.pages-1){
+              $scope.currentPage++;
+          }
+       }
+	})
+</script>
+</body>
+</html>

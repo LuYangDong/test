@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/angular-route.js"></script>
+ <style>
+   .nav a{color:#333;}
+ </style>
+</head>
+
+<body ng-app="myApp">
+<div class="container" ng-controller="mycontroller">
+
+<ul class="navbar-nav nav navbar-default" style="width:100%;">
+  <li ><a href="#/" >首页</a></li>
+   <li><a href="#/column">Web前端开发</a></li>
+      <li><a href="#/yingxiao">互联网营销</a></li>
+</ul>
+<div ng-view></div>
+</div>
+<script>
+	var app = angular.module("myApp",["ngRoute"]);
+		app.controller("mycontroller",function($scope,$http){
+		$http.get("zuoye.php?date="+new Date().getTime()).success(function(myData){
+			$scope.data = myData.person;
+			$scope.fun=function(i){
+				$scope.num= i;
+				}	
+		});
+	});
+	app.controller("homeCon",function($scope){
+			$scope.fun=function(i){
+				$scope.num= i;
+				}	
+	});
+	app.controller("viewCon",function($scope,$http,$sce){
+		if(window.location.href){
+			$scope.ss=window.location.href;
+				$scope.aa=$scope.ss.split('?')[1];
+			   $scope.num= $scope.aa.split('=')[1];
+			}
+		
+		$scope.trustHtml=function(data){
+			return $sce.trustAsHtml(data);
+			}
+	});
+	app.controller("columnCon",function($scope,$http){
+		$http.get("Web.php?date="+new Date().getTime()).success(function(myData){
+		$scope.datas = myData.person;
+		$scope.pages = 5;
+	  	$scope.curPage = 0;
+	  	$scope.pageCount = Math.ceil($scope.datas.length/$scope.pages)-1;	
+		});
+				
+});
+ app.filter("pageFormStar",function(){
+	
+	return function(e,start){
+		if (!e || !e.length) { return; }  
+        start = +start; 
+		return e.slice(start);
+	}	
+    });
+    app.config(["$routeProvider",function($routeProvide){
+	$routeProvide
+	.when("/",{
+		templateUrl:"home.html"	,
+		controller:"homeCon"	
+	  })
+	.when("/column",{
+		templateUrl:"column.html",
+		controller:"columnCon"
+	 })
+	 .when("/view",{
+		templateUrl:"view.html",
+		controller:"viewCon"
+	 })
+	 .otherwise({redirectTo:"/"});
+		
+}]);
+</script>
+</body>
+</html>

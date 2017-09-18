@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+	</head>
+	<body ng-app="myApp">
+	<div class="container" ng-controller="myCont">
+    
+		<h3>网络营销</h3>
+		<div class="media" ng-repeat="v in data |filter: pipei1 ">
+		  <div class="media-left" >
+		    <a href="#">
+		      <img class="media-object" src="{{v.thum}}" alt="...">
+		    </a>
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading" ng-bind="v.title"></h4>
+		    <p ng-bind="v.describe"></p>
+            <h6>发布日期:{{v.date}}</h6>
+		  </div>
+	  </div>
+      
+	  <h3>UI设计</h3>
+		<div class="media" ng-repeat="v in data |filter: pipei2 ">
+		  <div class="media-left" >
+		    <a href="#">
+		      <img class="media-object" src="{{v.thum}}" alt="...">
+		    </a>
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading" ng-bind="v.title"></h4>
+		    <p ng-bind="v.describe"></p>
+            <h6>发布日期:{{v.date}}</h6>
+		  </div>
+	  </div>
+    
+      <h3>Web前端开发</h3>
+		<div class="media" ng-repeat="v in data |filter: pipei3 ">
+		  <div class="media-left" >
+		    <a href="#">
+		      <img class="media-object" src="{{v.thum}}" alt="...">
+		    </a>
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading" ng-bind="v.title"></h4>
+		    <p ng-bind="v.describe"></p>
+            <h6>发布日期:{{v.date}}</h6>
+		  </div>
+	  </div>
+    </div>
+	<script>
+		var app=angular.module("myApp",[]);
+		app.controller("myCont",function($scope,$http){
+	    $http.get("sql.php").success(function(response){
+		$scope.data = response.article;
+	       console.log(response.article);	
+	}).error(function(event){
+		console.log(event);	
+	});	
+	    $scope.pipei1 = function(e){
+		return e.column=="网络营销";	
+	}
+	 
+	 
+	    $scope.pipei2 = function(e){
+		return e.column=="UI设计";	
+	}
+	
+	   $scope.pipei3 = function(e){
+		return e.column=="Web前端开发";	
+	}
+	
+	
+		})
+	</script>
+	</body>
+</html>

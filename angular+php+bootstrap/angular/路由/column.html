@@ -1,0 +1,35 @@
+
+    <table class="table" width="100%">
+      <tr>
+        <th>标题</th>
+        <th width="50%">日期</th>
+      </tr>
+      <tr ng-repeat="v in datas | pageFormStar:pages*curPage | limitTo:pages">
+        <td ng-bind="v.title"></td>
+        <td ng-bind="v.date"></td>
+      </tr>
+      <tr height="66">
+        <td align="right">
+          <button ng-click="curPage=0" ng-disabled="curPage==0">首页</button>
+          <button ng-click="curPage=curPage-1" ng-disabled="curPage==0">上一页</button>
+          当前第<span ng-bind="curPage+1"></span>页
+          <button ng-click="curPage=curPage+1" ng-disabled="curPage==pageCount">下一页</button>
+          <button ng-click="curPage=pageCount" ng-disabled="curPage==pageCount">尾页</button>
+        </td>
+        <td>
+          <div class="pagination-nav">
+            <span ng-bind="curPage+1"></span>
+            <span class="page-separator">/</span>
+            <span ng-bind="pageCout"></span>
+            <span class="page-nav">
+              <span class="pre-page"></span>
+              <span class="pre-page disabled"></span>
+              <span class="nav-separator"></span>
+              <span class="next-page"></span>
+              <span class="next-page disabled"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+    </table>
+</div>

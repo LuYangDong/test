@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* CSS Document */
+
+   .tab{width:1000px;margin:0 auto;}
+   .tab_rule{padding-top:6px;width:630px; float:left;}
+   .tab_til1{height:52px;font:16px/52px "宋体";color:#555555;border-bottom:2px solid #dddddd;margin-bottom:17px;}
+   .tab_left{float:left;font:13px/30px "宋体";color:#555;text-align:center;width:450px;}
+    .tab_right{float:right;font:12px/30px "宋体";color:#555;text-align:center;width:150px;}
+	.tab_rule li{border-bottom:1px dashed #666;font:13px/50px "宋体";color:#555;width:630px;}
+	.tab_rule li span{float:right;font:12px/34px "宋体";color:#666;}
+	
+	.tab_phone{float:left;margin:0 auto;border-left:1px dotted #ddd;padding-left:20px;margin-left:20px;}

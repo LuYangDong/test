@@ -1,0 +1,11 @@
+<table class="table">
+  <tr>
+		<th>标题</th>  
+        <th>日期</th>
+  </tr>
+   <tr ng-repeat="v in data">
+	<td ><a href="#/view?id={{num}}" ng-bind="v.title" ng-click="fun($index)" ></a></td>
+    <td ng-bind="v.date"></td>
+  </tr>
+</table>
+
